@@ -1,6 +1,6 @@
 # Blazer Dev
 
-Dev app for Blazer
+:fire: Dev app for [Blazer](https://github.com/ankane/blazer)
 
 ## Install
 
