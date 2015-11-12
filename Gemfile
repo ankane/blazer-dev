@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.2.0'
-
 gem 'dotenv-rails', groups: [:development, :test]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -44,8 +42,8 @@ gem 'letter_opener', group: :development
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'mysql2'
-gem 'activerecord4-redshift-adapter', '~> 0.2.0'
+# gem 'mysql2'
+# gem 'activerecord4-redshift-adapter', '~> 0.2.0'
 
 # Use unicorn as the app server
 gem 'unicorn'
