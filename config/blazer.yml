@@ -19,4 +19,11 @@ data_sources:
   #   url: <%= ENV["BLAZER_CATALOG_DATABASE_URL"] %>
 
 time_zone: "Eastern Time (US & Canada)"
+
 audit: true
+
+check_schedules:
+  - "5 minutes"
+  - "1 hour"
+  - "1 day"
+  - "1 week"
