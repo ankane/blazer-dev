@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427021847) do
+ActiveRecord::Schema.define(version: 20160504030136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20160427021847) do
     t.boolean  "invert"
     t.string   "schedule"
     t.datetime "last_run_at"
+    t.integer  "creator_id"
   end
 
   create_table "blazer_dashboard_queries", force: :cascade do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160427021847) do
     t.text     "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "creator_id"
   end
 
   create_table "blazer_queries", force: :cascade do |t|
