@@ -12,6 +12,11 @@ module DemoModel
   def destroy
     super unless ENV["DEMO"].present?
   end
+
+  # just checks
+  def update_state(*args)
+    super unless ENV["DEMO"].present?
+  end
 end
 
 [
