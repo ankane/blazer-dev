@@ -12,11 +12,6 @@ module DemoModel
   def destroy
     super unless ENV["DEMO"].present?
   end
-
-  # just checks
-  def update_state(*args)
-    super unless ENV["DEMO"].present?
-  end
 end
 
 [
@@ -26,4 +21,12 @@ end
   Blazer::Check
 ].each do |model|
   model.send(:include, DemoModel)
+end
+
+if ENV["DEMO"].present?
+  class Blazer::Check
+    def update_state(*args)
+      # do nothing
+    end
+  end
 end
