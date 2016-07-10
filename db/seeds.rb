@@ -9,50 +9,66 @@
 ENV["DEMO"] = ""
 
 users = []
-["Andrew", "Michael", "Nick", "Jen", "Stephanie", "Laura", "Tiffany", "Max", "Michelle", "Will", "Apoorva", "Nilam"].each do |name|
+["Andrew", "Michael", "Nick", "Jen", "Stephanie", "Laura", "Tiffany", "Max", "Michelle", "Will", "Apoorva", "Nilam", "Maksim", "Heather", "DJ"].each do |name|
   users << User.where(name: name).first_or_create!
 end
 
 [
   {
-    name: "New Ratings Per Week",
-    statement: "SELECT date_trunc('week', rated_at)::date AS week, COUNT(*) AS new_ratings FROM ratings GROUP BY week ORDER BY week"
-  },
-  {
-    name: "Top Genres",
-    statement: "SELECT\n  genres.name, COUNT(*) AS movies_count\nFROM genres_movies INNER JOIN genres ON genres_movies.genre_id = genres.id\nGROUP BY genres.name ORDER BY movies_count DESC"
-  },
-  {
-    name: "Users By Occupation",
+    name: "Smart Variable",
     statement: "SELECT * FROM users WHERE occupation_id = {occupation_id}"
   },
   {
-    name: "Highest Rated Movies",
-    statement: "SELECT title, COUNT(*) AS ratings_count, ROUND(AVG(rating), 2) AS avg_rating\nFROM movies INNER JOIN ratings ON ratings.movie_id = movies.id\nGROUP BY movies.id HAVING COUNT(*) >= 10\nORDER BY avg_rating DESC\nLIMIT 50"
+    name: "Smart Column",
+    statement: "SELECT occupation_id, age, gender FROM users ORDER BY id LIMIT 100"
   },
   {
-    name: "Movies By Genre",
-    statement: "SELECT movies.* FROM movies INNER JOIN genres_movies ON genres_movies.movie_id = movies.id WHERE genre_id = {genre_id}"
+    name: "Linked Column",
+    statement: "SELECT * FROM movies ORDER BY title LIMIT 100"
   },
   {
-    name: "Cumulative Ratings",
-    statement: "SELECT\n  date_trunc('week', rated_at)::date AS week,\n  sum(count(id)) OVER (ORDER BY date_trunc('week', rated_at)::date) AS ratings_count\nFROM ratings\nGROUP BY week",
+    name: "Line Chart Format 1",
+    statement: "SELECT date_trunc('week', rated_at)::date AS week, COUNT(*) AS new_ratings FROM ratings GROUP BY week ORDER BY week"
   },
   {
-    name: "New Ratings By Gender Per Month",
+    name: "Line Chart Format 2",
     statement: "SELECT\n  date_trunc('month', rated_at)::date AS month, gender, COUNT(*)\nFROM ratings INNER JOIN users ON ratings.user_id = users.id\nGROUP BY month, gender ORDER BY month, gender"
   },
   {
-    name: "Ratings By Time Range",
+    name: "Bar Chart Format 1",
+    statement: "SELECT title,\nCOUNT(*) AS ratings_count,\nROUND(AVG(rating), 2) AS avg_rating\nFROM movies INNER JOIN ratings ON ratings.movie_id = movies.id\nGROUP BY movies.id HAVING COUNT(*) >= 10\nORDER BY avg_rating DESC\nLIMIT 50"
+  },
+  {
+    name: "Bar Chart Format 2",
+    statement: "SELECT occupation_id, gender, COUNT(*) FROM ratings INNER JOIN users ON ratings.user_id = users.id GROUP BY 1, 2 ORDER BY 1, 2"
+  },
+  {
+    name: "Target Line",
+    statement: "SELECT date_trunc('week', rated_at)::date AS week,\nCOUNT(*) AS new_ratings, 5000 AS target\nFROM ratings GROUP BY week ORDER BY week"
+  },
+  {
+    name: "Time Range Selector",
     statement: "SELECT * FROM ratings WHERE rated_at >= {start_time} AND rated_at <= {end_time}"
   },
   {
-    name: "Users Without Zip Code",
+    name: "Check for Bad Data",
     statement: "SELECT * FROM users WHERE zip_code IS NULL"
   },
   {
-    name: "Users",
-    statement: "SELECT * FROM users LIMIT 100"
+    name: "Check for Missing Data",
+    statement: "SELECT * FROM users WHERE zip_code IS NULL"
+  },
+  {
+    name: "Check for Anomalies",
+    statement: "SELECT date_trunc('week', rated_at)::date AS week, COUNT(*) AS new_ratings FROM ratings GROUP BY week ORDER BY week"
+  },
+  {
+    name: "URLs",
+    statement: "SELECT name, 'https://duckduckgo.com?q=' || name AS search_url FROM occupations"
+  },
+  {
+    name: "Images",
+    statement: "SELECT 'http://thecatapi.com/api/images/get?format=src&type=gif' AS image_url FROM ratings LIMIT 1"
   }
 ].each_with_index do |query, i|
   q = Blazer::Query.where(creator_id: users.shift).first_or_initialize(id: i + 1)
@@ -62,15 +78,19 @@ end
 
 dashboard = Blazer::Dashboard.first_or_initialize
 dashboard.creator = users.last
-dashboard.update_attributes(name: "Ratings")
+dashboard.update_attributes(name: "Dashboard Demo")
 dashboard.dashboard_queries.destroy_all
 [
-  "New Ratings Per Week",
-  "New Ratings By Gender Per Month",
-  "Highest Rated Movies"
+  "Line Chart Format 1",
+  "Line Chart Format 2",
+  "Bar Chart Format 1",
+  "Bar Chart Format 2",
+  "Linked Column"
 ].each_with_index do |query_name, i|
   dashboard.dashboard_queries.create!(query_id: Blazer::Query.find_by(name: query_name).id, position: i)
 end
 
 Blazer::Check.destroy_all
-Blazer::Check.create!(query_id: Blazer::Query.find_by(name: "Users Without Zip Code").id, state: "passing", emails: "andrew@hero2app.com")
+Blazer::Check.create!(query_id: Blazer::Query.find_by(name: "Check for Bad Data").id, state: "passing", emails: "andrew@chartkick.com", check_type: "bad_data", schedule: "5 minutes")
+Blazer::Check.create!(query_id: Blazer::Query.find_by(name: "Check for Missing Data").id, state: "failing", emails: "andrew@chartkick.com", check_type: "missing_data", schedule: "1 hour")
+Blazer::Check.create!(query_id: Blazer::Query.find_by(name: "Check for Anomalies").id, state: "passing", emails: "andrew@chartkick.com", check_type: "anomaly", schedule: "1 day")

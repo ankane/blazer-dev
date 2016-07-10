@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506071919) do
+ActiveRecord::Schema.define(version: 20160710032559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20160506071919) do
     t.datetime "last_run_at"
     t.integer  "creator_id"
     t.boolean  "invert"
+    t.string   "check_type"
+    t.text     "message"
   end
 
   create_table "blazer_dashboard_queries", force: :cascade do |t|

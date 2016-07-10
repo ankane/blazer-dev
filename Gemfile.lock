@@ -1,7 +1,7 @@
 PATH
   remote: ../blazer
   specs:
-    blazer (1.4.0)
+    blazer (1.5.0)
       chartkick
       rails
       safely_block (>= 0.1.1)

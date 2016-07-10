@@ -22,6 +22,10 @@ time_zone: "Eastern Time (US & Canada)"
 
 audit: true
 
+anomaly_checks: true
+
+images: true
+
 check_schedules:
   - "5 minutes"
   - "1 hour"
