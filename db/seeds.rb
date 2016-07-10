@@ -35,11 +35,11 @@ end
     statement: "SELECT\n  date_trunc('month', rated_at)::date AS month, gender, COUNT(*)\nFROM ratings INNER JOIN users ON ratings.user_id = users.id\nGROUP BY month, gender ORDER BY month, gender"
   },
   {
-    name: "Bar Chart Format 1",
+    name: "Column Chart Format 1",
     statement: "SELECT title,\nCOUNT(*) AS ratings_count,\nROUND(AVG(rating), 2) AS avg_rating\nFROM movies INNER JOIN ratings ON ratings.movie_id = movies.id\nGROUP BY movies.id HAVING COUNT(*) >= 10\nORDER BY avg_rating DESC\nLIMIT 50"
   },
   {
-    name: "Bar Chart Format 2",
+    name: "Column Chart Format 2",
     statement: "SELECT occupation_id, gender, COUNT(*) FROM ratings INNER JOIN users ON ratings.user_id = users.id GROUP BY 1, 2 ORDER BY 1, 2"
   },
   {
@@ -83,8 +83,8 @@ dashboard.dashboard_queries.destroy_all
 [
   "Line Chart Format 1",
   "Line Chart Format 2",
-  "Bar Chart Format 1",
-  "Bar Chart Format 2",
+  "Column Chart Format 1",
+  "Column Chart Format 2",
   "Linked Column"
 ].each_with_index do |query_name, i|
   dashboard.dashboard_queries.create!(query_id: Blazer::Query.find_by(name: query_name).id, position: i)
