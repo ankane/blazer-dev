@@ -71,7 +71,7 @@ end
     statement: "SELECT 'http://thecatapi.com/api/images/get?format=src&type=gif' AS image_url FROM ratings LIMIT 1"
   }
 ].each_with_index do |query, i|
-  q = Blazer::Query.where(creator_id: users.shift).first_or_initialize(id: i + 1)
+  q = Blazer::Query.where(creator_id: users.shift).first_or_initialize
   q.assign_attributes(query)
   q.save(validate: false)
 end
