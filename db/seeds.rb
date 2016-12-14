@@ -69,6 +69,10 @@ end
   {
     name: "Images",
     statement: "SELECT 'http://thecatapi.com/api/images/get?format=src&type=gif' AS image_url FROM ratings LIMIT 1"
+  },
+  {
+    name: "Scatter Chart",
+    statement: "SELECT user_id, COUNT(*) FROM ratings GROUP BY 1"
   }
 ].each_with_index do |query, i|
   q = Blazer::Query.where(creator_id: users.shift).first_or_initialize
