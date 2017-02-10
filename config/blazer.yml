@@ -15,6 +15,9 @@ data_sources:
       movie_id: "SELECT id, title FROM movies ORDER BY title ASC"
       occupation_id: "SELECT id, name FROM occupations ORDER BY name ASC"
       genre_id: "SELECT id, name FROM genres ORDER BY name ASC"
+  non_standard_schema: 
+    url: <%= ENV["BLAZER_DATABASE_URL"] %>
+    schemas: ['secondary']
   # catalog:
   #   url: <%= ENV["BLAZER_CATALOG_DATABASE_URL"] %>
 
