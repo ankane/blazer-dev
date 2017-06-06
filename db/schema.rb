@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160710032559) do
+ActiveRecord::Schema.define(version: 20170605155811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,28 @@ ActiveRecord::Schema.define(version: 20160710032559) do
     t.text     "data_source"
   end
 
+  create_table "blazer_webhooks", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.integer  "check_id"
+    t.string   "name"
+    t.string   "uri"
+    t.string   "auth_header_name"
+    t.string   "auth_header_value"
+    t.text     "states"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "blazer_webhook_events", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.integer  "webhook_id"
+    t.datetime "run_at"
+    t.string   "state"
+    t.integer  "return_code"
+    t.string   "check_sum"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
