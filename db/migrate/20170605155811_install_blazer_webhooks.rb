@@ -1,4 +1,4 @@
-class InstallWebhooks < ActiveRecord::Migration
+class InstallBlazerWebhooks < ActiveRecord::Migration
   def change
     create_table :blazer_webhooks do |t|
       t.references :creator
