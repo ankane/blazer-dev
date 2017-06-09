@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20170605155811) do
     t.text     "states"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "limit_records"
   end
 
   create_table "blazer_webhook_events", force: :cascade do |t|
