@@ -9,7 +9,7 @@ git clone https://github.com/ankane/blazer.git
 git clone https://github.com/ankane/blazer-dev.git
 cd blazer-dev
 bundle
-bin/rake db:create db:migrate
+rails db:create db:migrate
 ```
 
 Add MovieLens data if desired
@@ -18,7 +18,7 @@ Add MovieLens data if desired
 createdb movielens
 curl https://raw.githubusercontent.com/ankane/movielens.sql/master/movielens.sql | psql -d movielens
 echo 'BLAZER_DATABASE_URL=postgres://localhost/movielens' >> .env
-rake db:seed
+rails db:seed
 ```
 
 Otherwise, create `.env` with:
@@ -30,7 +30,7 @@ BLAZER_DATABASE_URL=postgres://localhost/yourdb
 ## Run
 
 ```sh
-bin/rails server
+rails server
 ```
 
 Open [http://localhost:3000](http://localhost:3000) and start developing.
