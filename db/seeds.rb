@@ -68,7 +68,7 @@ end
   },
   {
     name: "Images",
-    statement: "SELECT 'http://thecatapi.com/api/images/get?format=src&type=gif' AS image_url FROM ratings LIMIT 1"
+    statement: "SELECT 'https://thecatapi.com/api/images/get?format=src&type=gif' AS image_url FROM ratings LIMIT 1"
   },
   {
     name: "Scatter Chart",
