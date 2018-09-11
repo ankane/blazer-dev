@@ -1,4 +1,4 @@
-class AddDataSourcesToBlazer < ActiveRecord::Migration
+class AddDataSourcesToBlazer < ActiveRecord::Migration[5.2]
   def change
     rename_column :blazer_checks, :blazer_query_id, :query_id
     rename_column :blazer_dashboard_queries, :blazer_dashboard_id, :dashboard_id

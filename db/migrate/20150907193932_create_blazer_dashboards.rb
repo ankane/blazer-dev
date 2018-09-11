@@ -1,4 +1,4 @@
-class CreateBlazerDashboards < ActiveRecord::Migration
+class CreateBlazerDashboards < ActiveRecord::Migration[5.2]
   def change
     create_table :blazer_dashboards do |t|
       t.text :name

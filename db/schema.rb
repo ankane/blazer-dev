@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,62 +10,68 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160710032559) do
+ActiveRecord::Schema.define(version: 2016_07_10_032559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "blazer_audits", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "query_id"
-    t.text     "statement"
+    t.bigint "user_id"
+    t.bigint "query_id"
+    t.text "statement"
     t.datetime "created_at"
-    t.text     "data_source"
+    t.text "data_source"
+    t.index ["query_id"], name: "index_blazer_audits_on_query_id"
+    t.index ["user_id"], name: "index_blazer_audits_on_user_id"
   end
 
   create_table "blazer_checks", force: :cascade do |t|
-    t.integer  "query_id"
-    t.string   "state"
-    t.text     "emails"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "schedule"
+    t.bigint "query_id"
+    t.string "state"
+    t.text "emails"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "schedule"
     t.datetime "last_run_at"
-    t.integer  "creator_id"
-    t.boolean  "invert"
-    t.string   "check_type"
-    t.text     "message"
+    t.integer "creator_id"
+    t.boolean "invert"
+    t.string "check_type"
+    t.text "message"
+    t.index ["query_id"], name: "index_blazer_checks_on_query_id"
   end
 
   create_table "blazer_dashboard_queries", force: :cascade do |t|
-    t.integer  "dashboard_id"
-    t.integer  "query_id"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.bigint "dashboard_id"
+    t.bigint "query_id"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dashboard_id"], name: "index_blazer_dashboard_queries_on_dashboard_id"
+    t.index ["query_id"], name: "index_blazer_dashboard_queries_on_query_id"
   end
 
   create_table "blazer_dashboards", force: :cascade do |t|
-    t.text     "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "creator_id"
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "creator_id"
   end
 
   create_table "blazer_queries", force: :cascade do |t|
-    t.integer  "creator_id"
-    t.string   "name"
-    t.text     "description"
-    t.text     "statement"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "data_source"
+    t.bigint "creator_id"
+    t.string "name"
+    t.text "description"
+    t.text "statement"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "data_source"
+    t.index ["creator_id"], name: "index_blazer_queries_on_creator_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

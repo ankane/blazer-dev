@@ -1,4 +1,4 @@
-class CreateBlazerChecks < ActiveRecord::Migration
+class CreateBlazerChecks < ActiveRecord::Migration[5.2]
   def change
     create_table :blazer_checks do |t|
       t.references :blazer_query

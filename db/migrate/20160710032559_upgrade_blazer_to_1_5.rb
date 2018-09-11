@@ -1,4 +1,4 @@
-class UpgradeBlazerTo15 < ActiveRecord::Migration
+class UpgradeBlazerTo15 < ActiveRecord::Migration[5.2]
   def change
     add_column(:blazer_checks, :check_type, :string)
     add_column(:blazer_checks, :message, :text)
