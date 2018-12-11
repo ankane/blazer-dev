@@ -77,6 +77,7 @@ end
 ].each_with_index do |query, i|
   q = Blazer::Query.where(creator_id: users.shift).first_or_initialize
   q.assign_attributes(query)
+  q.data_source = "main"
   q.save(validate: false)
 end
 
