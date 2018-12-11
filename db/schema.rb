@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2016_07_10_032559) do
+ActiveRecord::Schema.define(version: 2018_12_11_064618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2016_07_10_032559) do
     t.boolean "invert"
     t.string "check_type"
     t.text "message"
+    t.text "slack_channels"
     t.index ["query_id"], name: "index_blazer_checks_on_query_id"
   end
 
