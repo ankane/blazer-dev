@@ -83,7 +83,7 @@ end
 
 dashboard = Blazer::Dashboard.first_or_initialize
 dashboard.creator = users.last
-dashboard.update_attributes(name: "Dashboard Demo")
+dashboard.update!(name: "Dashboard Demo")
 dashboard.dashboard_queries.destroy_all
 [
   "Line Chart Format 1",
