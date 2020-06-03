@@ -1,7 +1,7 @@
 PATH
   remote: ../blazer
   specs:
-    blazer (2.2.2)
+    blazer (2.2.5)
       activerecord (>= 5)
       chartkick (>= 3.2)
       railties (>= 5)
@@ -215,4 +215,4 @@ DEPENDENCIES
   unicorn
 
 BUNDLED WITH
-   1.17.3
+   2.1.4
