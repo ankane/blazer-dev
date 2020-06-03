@@ -9,7 +9,7 @@ git clone https://github.com/ankane/blazer.git
 git clone https://github.com/ankane/blazer-dev.git
 cd blazer-dev
 bundle
-rails db:create db:schema:load
+rails db:setup
 ```
 
 Add MovieLens data if desired
