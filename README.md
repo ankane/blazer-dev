@@ -9,16 +9,14 @@ git clone https://github.com/ankane/blazer.git
 git clone https://github.com/ankane/blazer-dev.git
 cd blazer-dev
 bundle
-rails db:setup
+rails db:create
+rails db:schema:load
 ```
 
-Add MovieLens data if desired
+If desired, [add MovieLens data](https://github.com/ankane/movielens.sql) and run:
 
 ```sh
-ruby generate.rb path/to/ml-100k > movielens.sql
-createdb movielens
-psql -d movielens < movielens.sql
-echo 'BLAZER_DATABASE_URL=postgres://localhost/movielens' >> .env
+echo "BLAZER_DATABASE_URL=postgres://localhost/movielens" >> .env
 rails db:seed
 ```
 

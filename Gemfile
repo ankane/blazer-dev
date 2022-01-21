@@ -1,59 +1,34 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'dotenv-rails', groups: [:development, :test]
+# ruby "3.1.0"
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.0'
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "~> 7.0.1"
+
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem "sprockets-rails"
+
 # Use postgresql as the database for Active Record
-gem 'pg'
-# Use SCSS for stylesheets
-gem 'sass-rails'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
+gem "pg", "~> 1.1"
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', group: :doc
+# Use the Puma web server [https://github.com/puma/puma]
+gem "puma", "~> 5.0"
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-# gem 'spring', group: :development
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
-gem 'blazer', path: '../blazer'
-# gem 'blazer', github: 'ankane/blazer'
+gem "blazer", path: "../blazer"
+gem "dotenv-rails", groups: [:development, :test]
+gem "faker", groups: [:development]
+gem "letter_opener", group: :development
 
-gem 'foreman', group: :development
-gem 'dalli'
+group :development, :test do
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+end
 
-gem 'rails_12factor'
-
-gem 'rollbar'
-
-gem 'letter_opener', group: :development
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# gem 'mysql2'
-# gem 'activerecord4-redshift-adapter', '~> 0.2.0'
-
-# Use unicorn as the app server
-gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
-gem 'listen', group: [:development]
-
-gem 'bootsnap', '>= 1.1.0', require: false
+group :development do
+  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
+  # gem "spring"
+end

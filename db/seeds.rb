@@ -1,4 +1,12 @@
 # This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+#
+# Examples:
+#
+#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
+#   Character.create(name: "Luke", movie: movies.first)
+
+# This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
@@ -6,11 +14,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-ENV["DEMO"] = ""
-
 users = []
-["Andrew", "Michael", "Nick", "Jen", "Stephanie", "Laura", "Tiffany", "Max", "Michelle", "Will", "Apoorva", "Nilam", "Maksim", "Heather", "DJ"].each do |name|
-  users << User.where(name: name).first_or_create!
+20.times do
+  users << User.where(name: Faker::Name.unique.first_name).first_or_create!
 end
 
 [
@@ -96,6 +102,6 @@ dashboard.dashboard_queries.destroy_all
 end
 
 Blazer::Check.destroy_all
-Blazer::Check.create!(query_id: Blazer::Query.find_by(name: "Check for Bad Data").id, state: "passing", emails: "andrew@chartkick.com", check_type: "bad_data", schedule: "5 minutes")
-Blazer::Check.create!(query_id: Blazer::Query.find_by(name: "Check for Missing Data").id, state: "failing", emails: "andrew@chartkick.com", check_type: "missing_data", schedule: "1 hour")
-Blazer::Check.create!(query_id: Blazer::Query.find_by(name: "Check for Anomalies").id, state: "passing", emails: "andrew@chartkick.com", check_type: "anomaly", schedule: "1 day")
+Blazer::Check.create!(query_id: Blazer::Query.find_by(name: "Check for Bad Data").id, state: "passing", emails: "hi@example.org", check_type: "bad_data", schedule: "5 minutes")
+Blazer::Check.create!(query_id: Blazer::Query.find_by(name: "Check for Missing Data").id, state: "failing", emails: "hi@example.org", check_type: "missing_data", schedule: "1 hour")
+Blazer::Check.create!(query_id: Blazer::Query.find_by(name: "Check for Anomalies").id, state: "passing", emails: "hi@example.org", check_type: "anomaly", schedule: "1 day")
