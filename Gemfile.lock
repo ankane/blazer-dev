@@ -2,7 +2,7 @@ PATH
   remote: ../blazer
   specs:
     blazer (3.2.0)
-      activerecord (>= 6.1)
+      activerecord (>= 7)
       chartkick (>= 5)
       csv
       railties (>= 7)
@@ -136,7 +136,7 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.3)
+    nokogiri (1.18.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     pg (1.5.9)
