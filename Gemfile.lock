@@ -2,10 +2,10 @@ PATH
   remote: ../blazer
   specs:
     blazer (3.3.0)
-      activerecord (>= 7.1)
+      activerecord (>= 7.2)
       chartkick (>= 5)
       csv
-      railties (>= 7.1)
+      railties (>= 7.2)
       safely_block (>= 0.4)
 
 GEM
@@ -163,7 +163,7 @@ GEM
     puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.2.5)
+    rack (3.2.6)
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
