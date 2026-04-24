@@ -1,12 +1,12 @@
 PATH
   remote: ../blazer
   specs:
-    blazer (3.3.0)
+    blazer (3.4.0)
       activerecord (>= 7.2)
       chartkick (>= 5)
       csv
       railties (>= 7.2)
-      safely_block (>= 0.4)
+      safely_block (>= 1)
 
 GEM
   remote: https://rubygems.org/
@@ -104,7 +104,7 @@ GEM
       dotenv (= 3.1.8)
       railties (>= 6.1)
     drb (2.2.3)
-    erb (6.0.2)
+    erb (6.0.4)
     erubi (1.13.1)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
@@ -208,7 +208,7 @@ GEM
       tsort
     reline (0.6.3)
       io-console (~> 0.5)
-    safely_block (0.4.1)
+    safely_block (1.0.0)
     securerandom (0.4.1)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
